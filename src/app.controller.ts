@@ -3,17 +3,12 @@ import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
+  //inyectar el servicio AppService en AppController
   constructor(private readonly appService: AppService) {}
 
+  /*Esto son endpoint*/
   @Get("/")
   getHello(): string {
     return this.appService.getHello();
-  }
-  @Get("/usuarios")
-  getUsuarios():any {
-    return[
-    { id: 1, nombre: "Luis", apellido:"Gonzales"},
-    { id: 2, nombre: "Antonio", apellido:"Gonzales"}
-  ];
   }
 }
