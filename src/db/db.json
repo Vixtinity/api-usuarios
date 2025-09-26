@@ -3,12 +3,14 @@
         {
             "id": 1,
             "name": "Ana",
-            "email": "ana@example.com"
+            "email": "ana@example.com",
+            "edad": 28
         },
         {
             "id": 1,
             "name": "Ana",
-            "email": "ana@example.com"
+            "email": "ana@example.com",
+            "edad": 22
         }
     ]
 }
