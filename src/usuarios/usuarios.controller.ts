@@ -1,6 +1,7 @@
 import { BadRequestException, Body, Controller, Get, Post } from '@nestjs/common';
 import { UsuariosService } from './usuarios.service';
 import type { iUser } from './interfaces/IUsuario';
+import { CreateUserDto } from './dto/new-user.dto';
 
 @Controller('usuarios')
 export class UsuariosController {
@@ -14,11 +15,14 @@ export class UsuariosController {
   getAll(){
     return this.usuariosService.findAll();
   }
-  //metodo interno para borrar usuarios, NO ES NDPOINT, necesita decorador
+  @Post('new')
+  add(@Body() usuuarioDTO: CreateUserDto){
+    console.log(usuuarioDTO, 'usuario recibido');
+  }
   delete(){
     return 'Borrado de usuarios'
   }
-  @Post('new')
+  /*@Post('new')
   add(@Body() usuario: iUser){
     let esNumber: boolean = false;
     let esmayor18: boolean = false;
@@ -40,6 +44,5 @@ export class UsuariosController {
         success: false,
         message: msgerror
       });
-    }
-  }
+    }*/
 }
