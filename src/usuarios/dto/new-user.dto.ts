@@ -1,30 +1,30 @@
-import { IsNumber, IsString, Min, IsInt, Max, IsOptional, IsEmail, IsArray, ArrayMinSize, ArrayMaxSize, IsIn, IsBoolean, IsUUID, MinLength, MaxLength, Validate, ValidateNested } from "class-validator";
-import { AddressDTO } from "./address.dto";
-import { Type } from "class-transformer";
- //peticion a los roles que hay en la tabla de roles
-const roles: string[] = ['admin', 'usuario', 'invitado'];
+import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert } from 'typeorm';
 
-export class CreateUserDto{
+@Entity('usuario')
+export class CreateUserDto {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @IsOptional()
-    @IsString()
-    @MinLength(3, {message: 'El nombre debe tener al menos 3 caracteres'})
-    @MaxLength(50, {message: 'El nombre debe tener como maximo 50 caracteres'})
-    name: string;
+  @Column({ length: 50, nullable: true })
+  name: string;
 
-    @IsEmail({}, {message: 'El email debe ser valido'})
-    @IsString()
-    email: string;
+  @Column()
+  edad: number;
 
-    @IsString({message: 'El nif debe ser un string'})
-    nif: string;
+  @Column({ unique: true })
+  email: string;
 
-    @IsInt({message: 'El id debe ser un número entero'})
-    @Min (18, {message: 'La edad minima es 18 años'})
-    @Max (100, {message: 'La edad maxima es 100 años'})
-    edad: number;
-    
-    @IsIn(roles, {message: `El rol debe ser uno de los siguientes: ${roles.join(', ')}`})
-    rol: string;
+  @Column()
+  nif: string;
 
+  @Column()
+  rol: string;
+
+  @BeforeInsert()
+  checkName() {
+    if (!this.name) {
+      this.name = 'invitado';
+    }
+    this.name = this.name.toLowerCase();
+  }
 }
