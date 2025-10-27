@@ -6,9 +6,6 @@ const roles: string[] = ['admin', 'usuario', 'invitado'];
 
 export class CreateUserDto{
 
-    @IsUUID()
-    id: number;
-
     @IsOptional()
     @IsString()
     @MinLength(3, {message: 'El nombre debe tener al menos 3 caracteres'})
@@ -26,20 +23,8 @@ export class CreateUserDto{
     @Min (18, {message: 'La edad minima es 18 años'})
     @Max (100, {message: 'La edad maxima es 100 años'})
     edad: number;
-
-    @IsArray()
-    @ArrayMinSize(1, {message: 'Debe tener al menos un telefono'})
-    @ArrayMaxSize(3, {message: 'Debe tener como maximo 3 telefonos'})
-    telefonos: string[];
-
+    
     @IsIn(roles, {message: `El rol debe ser uno de los siguientes: ${roles.join(', ')}`})
     rol: string;
-    @IsBoolean()
-    esdelMadrid: boolean;
-
-    @IsArray()
-    @ValidateNested({each: true})
-    @Type(() => AddressDTO)
-    direcciones: AddressDTO[];
 
 }
