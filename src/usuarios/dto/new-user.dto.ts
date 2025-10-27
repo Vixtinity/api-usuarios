@@ -1,30 +1,55 @@
-import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert } from 'typeorm';
+import { IsArray,IsInt, IsString, Min, Max, IsEmail,
+    IsOptional, MinLength, MaxLength,
+    ArrayMinSize, ArrayMaxSize,
+    IsIn} from "class-validator";
+import { CreateDateColumn, UpdateDateColumn } from "typeorm";
+//peticion a los roles que hay en la tabla de roles de la api
+const roles: string[] = ['administrador', 'usuario', 'invitado'];
 
-@Entity('usuario')
 export class CreateUserDto {
-  @PrimaryGeneratedColumn()
-  id: number;
 
-  @Column({ length: 50, nullable: true })
-  name: string;
+   // @IsNumber() /* funcion externa que valida que es un número */
+    @IsString() //ES UN IDENTIFICADOR UNICO UNIVERSAL 32 o 36 caracteres (-)
+    id: string;
+   
+    //Edad esta comprendidad entre 18 y 58
+    @IsInt({message: 'La edad es un entero'}) /* funcion externa que valida que es un número */
+    @IsOptional()
+    @Min(18, {message: 'La edad minima es 18 años'})
+    @Max(58, {message: 'La edad maxima es 58 años'})
+    edad: number;
 
-  @Column()
-  edad: number;
+    @IsOptional()
+    @IsString() /* funcion externa que valida que es un string */
+    @MinLength(5, {message: 'namo: Minimo 5 caracteres'})
+    @MaxLength(8, {message: 'name: Maximo 8 caracteres'})
+    name: string;
 
-  @Column({ unique: true })
-  email: string;
+    @IsEmail() /* funcion externa que valida que es un string */
+    email: string;
 
-  @Column()
-  nif: string;
+    @IsOptional()
+    @IsArray() /* funcion externa que valida que es un array */
+    @ArrayMinSize(2, {message: 'Debe tener al menos 2 teléfonos'})
+    @ArrayMaxSize(3, {message: 'Debe tener  3 teléfonos'})    
+    telefonos: string[];
 
-  @Column()
-  rol: string;
+    @IsOptional()
+    @IsString()
+    nif: string;
 
-  @BeforeInsert()
-  checkName() {
-    if (!this.name) {
-      this.name = 'invitado';
-    }
-    this.name = this.name.toLowerCase();
-  }
+    @IsIn(roles, {message: `El rol debe ser uno de los siguientes: ${roles}`})
+    rol: string;
+
+    //SON MECANISMOS DE SEGURIDAD
+    @CreateDateColumn()
+    createdAt: Date;
+
+    @UpdateDateColumn()
+    updatedAt: Date;
+   
+}
+
+function IsMinLength(arg0: number, arg1: { message: string; }): (target: CreateUserDto, propertyKey: "name") => void {
+    throw new Error("Function not implemented.");
 }

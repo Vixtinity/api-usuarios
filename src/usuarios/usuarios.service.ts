@@ -16,7 +16,7 @@ export class UsuariosService {
     }
     async findAll(){
         await this.db.read(); //se bloquea
-        return this.db.data.users;
+        return this.db.data.usuarios;
     }
     
 

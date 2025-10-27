@@ -1,31 +1,48 @@
-import { BeforeInsert, Column, Entity, PrimaryColumn } from "typeorm";
+
+//**** ORM --> Mapeo Objeto - Relacional ***** */
+
+import { BeforeInsert, Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+
+//create table usuario (id ....)
+//LOGICA DE NEGOCIO DE LA ENTIDAD USUARIO. Hola
+export class Address{
+    @Column() calle: string;
+    @Column() pais: string;
+    @Column() numero: number;
+}
 
 @Entity('usuario')
-export class Usuario{
+export class Usuario {
+    
     @PrimaryColumn()
-    id: number;
-
-    @Column({length: '8'})
-    name: string;
-
-    @Column()
-    edad: number;
-
-    @Column({unique: true })
-    email: string;
-
-    @Column()
     nif: string;
 
+    @Column('uuid')
+    id: string;
+
+    @Column({ nullable:true,  length: 30})
+    name: string;
+
+    @Column('int', {default: 18})
+    edad: number;
+    
+    @Column({nullable: false, unique: true})
+    email: string;
+    
     @Column()
     rol: string;
 
+    @Column( () => Address, {prefix: 'addr_'}) address: Address;
+  
     @BeforeInsert()
-    checkName(){
-        if(!this.name){
+    checkName() {
+        console.log('Antes de insertar el usuario en la BD');
+        if (!this.name){
             this.name = 'invitado';
         }
-        this.name = this.name.toLowerCase();
-    }
 
+        this.name = this.name
+                    .replaceAll(' ', '_')
+                    .toUpperCase();  
+    }
 }
