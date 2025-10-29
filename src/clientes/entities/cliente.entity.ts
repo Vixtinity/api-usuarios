@@ -1,20 +1,22 @@
 
 //**** ORM --> Mapeo Objeto - Relacional ***** */
 
-import { Address } from "src/common/entities/address";
 import { BeforeInsert, Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 
 //create table usuario (id ....)
 //LOGICA DE NEGOCIO DE LA ENTIDAD USUARIO. Hola
+export class Address{
+    @Column() calle: string;
+    @Column() pais: string;
+    @Column() numero: number;
+}
 
-@Entity('usuario')
-export class Usuario {
+@Entity('Cliente')
+export class Cliente {
     
     @PrimaryColumn()
     nif: string;
 
-    @Column('uuid')
-    id: string;
 
     @Column({ nullable:true,  length: 30})
     name: string;
@@ -27,6 +29,8 @@ export class Usuario {
     
     @Column()
     rol: string;
+
+
 
     @Column( () => Address, {prefix: 'addr_'}) address: Address;
   

@@ -2,6 +2,7 @@ import { IsArray,IsInt, IsString, Min, Max, IsEmail,
     IsOptional, MinLength, MaxLength,
     ArrayMinSize, ArrayMaxSize,
     IsIn} from "class-validator";
+import { AddressDTO } from "src/common/dto/address.dto";
 import { CreateDateColumn, UpdateDateColumn } from "typeorm";
 //peticion a los roles que hay en la tabla de roles de la api
 const roles: string[] = ['administrador', 'usuario', 'invitado'];
@@ -41,12 +42,16 @@ export class CreateUserDto {
     @IsIn(roles, {message: `El rol debe ser uno de los siguientes: ${roles}`})
     rol: string;
 
-    //SON MECANISMOS DE SEGURIDAD
-    @CreateDateColumn()
-    createdAt: Date;
+    direccion: AddressDTO;
 
-    @UpdateDateColumn()
-    updatedAt: Date;
+    //SON MECANISMOS DE SEGURIDAD
+    // @CreateDateColumn()
+    // createdAt: Date;
+
+    // @UpdateDateColumn()
+    // updatedAt: Date;
+
+
    
 }
 
