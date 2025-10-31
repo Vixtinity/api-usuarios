@@ -1,0 +1,152 @@
+[
+  {
+    "nif": "12345678A",
+    "nombre": "CARLOS_PEREZ",
+    "edad": 29,
+    "email": "carlos.perez@example.com",
+    "rol": "usuario",
+    "address": {
+      "pais": "España",
+      "ciudad": "Madrid",
+      "provincia": "Madrid",
+      "calle": "Calle Mayor",
+      "numero": "12",
+      "cpostal": "28013"
+    }
+  },
+  {
+    "nif": "23456789B",
+    "nombre": "MARIA_LOPEZ",
+    "edad": 34,
+    "email": "maria.lopez@example.com",
+    "rol": "admin",
+    "address": {
+      "pais": "España",
+      "ciudad": "Barcelona",
+      "provincia": "Barcelona",
+      "calle": "Avenida Diagonal",
+      "numero": "45",
+      "cpostal": "08019"
+    }
+  },
+  {
+    "nif": "34567890C",
+    "nombre": "JUAN_GARCIA",
+    "edad": 41,
+    "email": "juan.garcia@example.com",
+    "rol": "usuario",
+    "address": {
+      "pais": "España",
+      "ciudad": "Valencia",
+      "provincia": "Valencia",
+      "calle": "Calle del Sol",
+      "numero": "3",
+      "cpostal": "46001"
+    }
+  },
+  {
+    "nif": "45678901D",
+    "nombre": "LAURA_MARTINEZ",
+    "edad": 27,
+    "email": "laura.martinez@example.com",
+    "rol": "moderador",
+    "address": {
+      "pais": "España",
+      "ciudad": "Sevilla",
+      "provincia": "Sevilla",
+      "calle": "Avenida de la Constitución",
+      "numero": "78",
+      "cpostal": "41004"
+    }
+  },
+  {
+    "nif": "56789012E",
+    "nombre": "JAVIER_RODRIGUEZ",
+    "edad": 36,
+    "email": "javier.rodriguez@example.com",
+    "rol": "usuario",
+    "address": {
+      "pais": "España",
+      "ciudad": "Bilbao",
+      "provincia": "Bizkaia",
+      "calle": "Gran Vía",
+      "numero": "10",
+      "cpostal": "48009"
+    }
+  },
+  {
+    "nif": "67890123F",
+    "nombre": "ANA_FERNANDEZ",
+    "edad": 22,
+    "email": "ana.fernandez@example.com",
+    "rol": "usuario",
+    "address": {
+      "pais": "España",
+      "ciudad": "Zaragoza",
+      "provincia": "Zaragoza",
+      "calle": "Calle Alfonso I",
+      "numero": "25",
+      "cpostal": "50003"
+    }
+  },
+  {
+    "nif": "78901234G",
+    "nombre": "PABLO_GOMEZ",
+    "edad": 38,
+    "email": "pablo.gomez@example.com",
+    "rol": "editor",
+    "address": {
+      "pais": "España",
+      "ciudad": "Granada",
+      "provincia": "Granada",
+      "calle": "Calle Reyes Católicos",
+      "numero": "5",
+      "cpostal": "18009"
+    }
+  },
+  {
+    "nif": "89012345H",
+    "nombre": "ELENA_RUIZ",
+    "edad": 31,
+    "email": "elena.ruiz@example.com",
+    "rol": "usuario",
+    "address": {
+      "pais": "España",
+      "ciudad": "Málaga",
+      "provincia": "Málaga",
+      "calle": "Calle Larios",
+      "numero": "18",
+      "cpostal": "29005"
+    }
+  },
+  {
+    "nif": "90123456I",
+    "nombre": "SERGIO_SANCHEZ",
+    "edad": 26,
+    "email": "sergio.sanchez@example.com",
+    "rol": "usuario",
+    "address": {
+      "pais": "España",
+      "ciudad": "Valladolid",
+      "provincia": "Valladolid",
+      "calle": "Calle Santiago",
+      "numero": "66",
+      "cpostal": "47001"
+    }
+  },
+  {
+    "nif": "01234567J",
+    "nombre": "MARTA_NAVARRO",
+    "edad": 43,
+    "email": "marta.navarro@example.com",
+    "rol": "admin",
+    "address": {
+      "pais": "España",
+      "ciudad": "Alicante",
+      "provincia": "Alicante",
+      "calle": "Avenida Maisonnave",
+      "numero": "9",
+      "cpostal": "03003"
+    }
+  }
+]

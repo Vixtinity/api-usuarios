@@ -11,15 +11,14 @@ export class Address{
     @Column() numero: number;
 }
 
-@Entity('Cliente')
+@Entity('cliente')
 export class Cliente {
     
     @PrimaryColumn()
     nif: string;
 
-
     @Column({ nullable:true,  length: 30})
-    name: string;
+    nombre: string;
 
     @Column('int', {default: 18})
     edad: number;
@@ -37,11 +36,11 @@ export class Cliente {
     @BeforeInsert()
     checkName() {
         console.log('Antes de insertar el usuario en la BD');
-        if (!this.name){
-            this.name = 'invitado';
+        if (!this.nombre){
+            this.nombre = 'invitado';
         }
 
-        this.name = this.name
+        this.nombre = this.nombre
                     .replaceAll(' ', '_')
                     .toUpperCase();  
     }
