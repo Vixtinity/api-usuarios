@@ -1,0 +1,76 @@
+import { DataSource } from 'typeorm';
+import { Cliente } from '../../modules/clientes/entities/cliente.entity';
+// Usaremos faker para generar datos aleatorios
+const faker = {
+  string: {
+    numeric: (length: number = 1) => {
+      return Array.from({ length: Number(length) }, () => Math.floor(Math.random() * 10)).join('');
+    },
+    alpha: ({ casing = 'lower', length = 1 } = {} as any) => {
+      const letters = 'abcdefghijklmnopqrstuvwxyz';
+      let s = Array.from({ length: Number(length) }, () => letters[Math.floor(Math.random() * letters.length)]).join('');
+      return casing === 'upper' ? s.toUpperCase() : s;
+    },
+  },
+  person: {
+    fullName: () => {
+      const first = ['Juan', 'María', 'Carlos', 'Ana', 'Luis', 'Laura', 'Miguel', 'Elena'];
+      const last = ['García', 'Martínez', 'López', 'Sánchez', 'Pérez', 'Gómez'];
+      return `${first[Math.floor(Math.random() * first.length)]} ${last[Math.floor(Math.random() * last.length)]}`;
+    },
+  },
+  number: {
+    int: ({ min = 0, max = 100 } = {}) => Math.floor(Math.random() * (max - min + 1)) + min,
+    float: ({ min = 0, max = 1 } = {}) => Math.random() * (max - min) + min,
+  },
+  internet: {
+    email: () => {
+      const user = Math.random().toString(36).substring(2, 9);
+      const domains = ['example.com', 'mail.com', 'test.com', 'correo.es'];
+      return `${user}@${domains[Math.floor(Math.random() * domains.length)]}`;
+    },
+  },
+  location: {
+    city: () => ['Madrid', 'Barcelona', 'Valencia', 'Sevilla', 'Zaragoza'][Math.floor(Math.random() * 5)],
+    state: () => ['Madrid', 'Cataluña', 'Valencia', 'Andalucía', 'Aragón'][Math.floor(Math.random() * 5)],
+    street: () => ['Calle Mayor', 'Avenida de la Constitución', 'Calle Real', 'Paseo de la Reforma'][Math.floor(Math.random() * 4)],
+    zipCode: (format = '#####') => format.replace(/#/g, () => String(Math.floor(Math.random() * 10))),
+  },
+} as any;
+
+export async function seedClientes(dataSource: DataSource) {
+  const repo = dataSource.getRepository(Cliente);
+  const existing = await repo.count();
+  if (existing >= 10) {
+    console.log('👤 Ya existen clientes en la base de datos. Seed cancelado.');
+    return;
+  }
+  console.log('🌱 Creando 10 clientes...');
+  const clientes: Cliente[] = [];
+
+  for (let i = 0; i < 10; i++) {
+    const cliente = repo.create({
+      // Ajusta las propiedades a las que realmente existen en Cliente y Address
+      // Por ejemplo, si Cliente tiene 'dni' en vez de 'nif', usa 'dni'
+      // Si Address no tiene 'ciudad', elimínala o usa la propiedad correcta
+      // Aquí un ejemplo suponiendo que las propiedades correctas son 'dni', 'nombre', 'edad', 'email', 'comision', y address tiene 'pais', 'provincia', 'calle', 'numero', 'cpostal'
+      dni: faker.string.numeric(8) + faker.string.alpha({ casing: 'upper' }),
+      nombre: faker.person.fullName(),
+      edad: faker.number.int({ min: 18, max: 70 }),
+      email: faker.internet.email(),
+      //categoria: //alguna categoria de la tabla categorias
+      comision: faker.number.float({ min: 0.1, max: 0.5}),
+      address: {
+        pais: 'España',
+        provincia: faker.location.state(),
+        calle: faker.location.street(),
+        numero: faker.string.numeric(2),
+        cpostal: faker.location.zipCode('#####'),
+      },
+    });
+
+    clientes.push(cliente);
+  }
+  await repo.save(clientes);
+  console.log('✅ 10 clientes insertados correctamente.');
+}

@@ -31,7 +31,7 @@ export class Cliente {
 
 
 
-    @Column( () => Address, {prefix: 'addr_'}) address: Address;
+    @Column( () => Address, {prefix: 'addr_'}) direccion: Address;
   
     @BeforeInsert()
     checkName() {
