@@ -9,12 +9,12 @@ import { BeforeInsert, Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } f
 
 @Entity('usuario')
 export class Usuario {
-    
+
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
+
     @PrimaryColumn()
     nif: string;
-
-    @Column('uuid')
-    id: string;
 
     @Column({ nullable:true,  length: 30})
     name: string;

@@ -1,12 +1,13 @@
 import { BadRequestException, Body, Controller, Get, Post } from '@nestjs/common';
-import { UsuariosService } from './usuarios.service';
+import { UsuarioService } from './usuarios.service';
+
 import type { iUser } from './interfaces/IUsuario';
 import { CreateUserDto } from './dto/new-user.dto';
 
 @Controller('usuarios')
 export class UsuariosController {
   //inyectar el servicio UsuariosService en UsuariosController
-  constructor(private readonly usuariosService: UsuariosService) {}
+  constructor(private readonly usuariosService: UsuarioService) {}
   @Get()
   getHome(){
     return 'home de la seccion de usuarios'
@@ -15,10 +16,12 @@ export class UsuariosController {
   getAll(){
     return this.usuariosService.findAll();
   }
+  
   @Post('new')
   add(@Body() usuuarioDTO: CreateUserDto){
-    console.log(usuuarioDTO, 'usuario recibido');
+    return this.usuariosService.create(usuuarioDTO);
   }
+
   delete(){
     return 'Borrado de usuarios'
   }

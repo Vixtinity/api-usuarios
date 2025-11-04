@@ -1,24 +1,20 @@
-
 //**** ORM --> Mapeo Objeto - Relacional ***** */
 
-import { BeforeInsert, Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import { Address } from "../../../common/entities/address";
+import { BeforeInsert, Column, Entity, PrimaryColumn } from "typeorm";
 
-//create table usuario (id ....)
-//LOGICA DE NEGOCIO DE LA ENTIDAD USUARIO. Hola
-export class Address{
-    @Column() calle: string;
-    @Column() pais: string;
-    @Column() numero: number;
-}
 
 @Entity('cliente')
 export class Cliente {
     
     @PrimaryColumn()
-    nif: string;
+    nif: string
 
     @Column({ nullable:true,  length: 30})
     nombre: string;
+
+    @Column({ nullable:true,  length: 30})
+    apellidos: string;
 
     @Column('int', {default: 18})
     edad: number;
@@ -26,22 +22,35 @@ export class Cliente {
     @Column({nullable: false, unique: true})
     email: string;
     
-    @Column()
-    rol: string;
+    @Column('float', {default: 0.3})
+    comision: number;
 
-
-
-    @Column( () => Address, {prefix: 'addr_'}) direccion: Address;
+    @Column(() => Address, { prefix: '' }) direccion: Address;
+    
   
-    @BeforeInsert()
-    checkName() {
-        console.log('Antes de insertar el usuario en la BD');
-        if (!this.nombre){
-            this.nombre = 'invitado';
-        }
+    //**** MECENISMOS DE SEGURIDAD  *****/
+    //monitorizar y auditarlos registros de usuarios y 
+    //tabla de accesos --> login/logout/change Profile ...  
+   
 
-        this.nombre = this.nombre
-                    .replaceAll(' ', '_')
-                    .toUpperCase();  
-    }
+    // @BeforeInsert() //evento disparador
+    // CheckNif(){ // método manejador del evento
+    //     console.log('Antes nif de insertar el usuario en la BD');
+    //     if (!this.nif.includes('-')){
+    //         const letra = this.nif.slice(-1).toUpperCase();
+    //         const numeros = this.nif.slice(0, -1);
+    //         this.nif = `${numeros}-${letra}`;   
+    //     }
+    // }
+    // @BeforeInsert()
+    // checkName() {
+    //     console.log('Antes de insertar el usuario en la BD');
+    //     if (!this.name){
+    //         this.name = 'invitado';
+    //     }
+
+    //     this.name = this.name
+    //                 .replaceAll(' ', '_')
+    //                 .toUpperCase();  
+    // }
 }

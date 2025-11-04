@@ -4,12 +4,12 @@ import { AppService } from './app.service';
 import { UsuariosModule } from './modules/usuarios/usuarios.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { ClientesModule } from './modules/clientes/cliente.module';
+import { ClienteModule } from './modules/clientes/cliente.module';
 import { SeedModule } from './modules/seed/seed.module';
 
 @Module({
   imports: [UsuariosModule,
-    ClientesModule,
+    ClienteModule,
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'postgres',

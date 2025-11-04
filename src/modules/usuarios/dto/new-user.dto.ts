@@ -1,7 +1,9 @@
+import { Type } from "class-transformer";
 import { IsArray,IsInt, IsString, Min, Max, IsEmail,
     IsOptional, MinLength, MaxLength,
     ArrayMinSize, ArrayMaxSize,
-    IsIn} from "class-validator";
+    IsIn,
+    ValidateNested} from "class-validator";
 import { AddressDTO } from "src/common/dto/address.dto";
 import { CreateDateColumn, UpdateDateColumn } from "typeorm";
 //peticion a los roles que hay en la tabla de roles de la api
@@ -9,10 +11,6 @@ const roles: string[] = ['administrador', 'usuario', 'invitado'];
 
 export class CreateUserDto {
 
-   // @IsNumber() /* funcion externa que valida que es un número */
-    @IsString() //ES UN IDENTIFICADOR UNICO UNIVERSAL 32 o 36 caracteres (-)
-    id: string;
-   
     //Edad esta comprendidad entre 18 y 58
     @IsInt({message: 'La edad es un entero'}) /* funcion externa que valida que es un número */
     @IsOptional()
@@ -42,7 +40,10 @@ export class CreateUserDto {
     @IsIn(roles, {message: `El rol debe ser uno de los siguientes: ${roles}`})
     rol: string;
 
-    direccion: AddressDTO;
+    @ValidateNested()
+    @Type(() => AddressDTO)
+    address: AddressDTO;
+
 
     //SON MECANISMOS DE SEGURIDAD
     // @CreateDateColumn()
