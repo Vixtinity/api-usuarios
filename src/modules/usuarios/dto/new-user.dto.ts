@@ -5,6 +5,7 @@ import { IsArray,IsInt, IsString, Min, Max, IsEmail,
     IsIn,
     ValidateNested} from "class-validator";
 import { AddressDTO } from "src/common/dto/address.dto";
+import { CreateClienteDto } from "src/modules/clientes/dto/clientes.dto";
 import { CreateDateColumn, UpdateDateColumn } from "typeorm";
 //peticion a los roles que hay en la tabla de roles de la api
 const roles: string[] = ['administrador', 'usuario', 'invitado'];
@@ -44,16 +45,9 @@ export class CreateUserDto {
     @Type(() => AddressDTO)
     address: AddressDTO;
 
-
-    //SON MECANISMOS DE SEGURIDAD
-    // @CreateDateColumn()
-    // createdAt: Date;
-
-    // @UpdateDateColumn()
-    // updatedAt: Date;
-
-
-   
+    @ValidateNested()
+    @Type(()=> CreateClienteDto)
+    cliente: CreateClienteDto;
 }
 
 function IsMinLength(arg0: number, arg1: { message: string; }): (target: CreateUserDto, propertyKey: "name") => void {

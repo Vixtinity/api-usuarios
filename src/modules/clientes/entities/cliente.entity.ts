@@ -1,14 +1,15 @@
 //**** ORM --> Mapeo Objeto - Relacional ***** */
 
 import { Address } from "../../../common/entities/address";
-import { BeforeInsert, Column, Entity, PrimaryColumn } from "typeorm";
+import { Usuario } from "../../usuarios/entities/usuario.entity";
+import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 
 
 @Entity('cliente')
 export class Cliente {
-    
-    @PrimaryColumn()
-    nif: string
+
+    @PrimaryColumn({nullable: false, unique: true})
+    email: string;
 
     @Column({ nullable:true,  length: 30})
     nombre: string;
@@ -19,8 +20,6 @@ export class Cliente {
     @Column('int', {default: 18})
     edad: number;
     
-    @Column({nullable: false, unique: true})
-    email: string;
     
     @Column('float', {default: 0.3})
     comision: number;

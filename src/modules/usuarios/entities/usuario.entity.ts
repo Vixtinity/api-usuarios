@@ -2,7 +2,8 @@
 //**** ORM --> Mapeo Objeto - Relacional ***** */
 
 import { Address } from "src/common/entities/address";
-import { BeforeInsert, Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import { Cliente } from "../../clientes/entities/cliente.entity";
+import { BeforeInsert, Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 //create table usuario (id ....)
 //LOGICA DE NEGOCIO DE LA ENTIDAD USUARIO. Hola
@@ -13,8 +14,13 @@ export class Usuario {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @PrimaryColumn()
+    @Column({ unique: true })
     nif: string;
+
+    @OneToOne(() => Cliente, { cascade: true })
+    @JoinColumn()
+    cliente: Cliente;
+
 
     @Column({ nullable:true,  length: 30})
     name: string;
