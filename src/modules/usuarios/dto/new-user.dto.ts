@@ -52,4 +52,4 @@ export class CreateUserDto {
 
 function IsMinLength(arg0: number, arg1: { message: string; }): (target: CreateUserDto, propertyKey: "name") => void {
     throw new Error("Function not implemented.");
-}
+} 

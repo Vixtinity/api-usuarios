@@ -6,6 +6,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Usuario } from './entities/usuario.entity';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/new-user.dto';
+import { ClienteService } from '../clientes/cliente.service';
 
 type Data = {
     users: iUser[]
@@ -16,6 +17,7 @@ export class UsuarioService {
   constructor(
     @InjectRepository(Usuario)
     private readonly usuarioRepo: Repository<Usuario>,
+    private readonly clienteService: ClienteService
   ) {}
 
   async create(dto: CreateUserDto) {
