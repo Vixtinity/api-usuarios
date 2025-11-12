@@ -6,9 +6,13 @@ import { UpdateSeedDto } from './dto/update-seed.dto';
 @Controller('seed')
 export class SeedController {
   constructor(private readonly seedService: SeedService) {}
-
   @Get()
   loadData() {
+    return this.seedService.loadData();
+  }
+
+  @Post()
+  subirDatos(){
     return this.seedService.loadData();
   }
 }

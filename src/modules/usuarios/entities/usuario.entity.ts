@@ -4,6 +4,7 @@
 import { Address } from "src/common/entities/address";
 import { Cliente } from "../../clientes/entities/cliente.entity";
 import { BeforeInsert, Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Optional } from "@nestjs/common";
 
 //create table usuario (id ....)
 //LOGICA DE NEGOCIO DE LA ENTIDAD USUARIO. Hola
@@ -19,6 +20,7 @@ export class Usuario {
 
     @OneToOne(() => Cliente, { cascade: true })
     @JoinColumn()
+    @Optional()
     cliente: Cliente;
 
 
@@ -38,7 +40,7 @@ export class Usuario {
   
     @BeforeInsert()
     checkName() {
-        console.log('Antes de insertar el usuario en la BD');
+        console.log('');
         if (!this.name){
             this.name = 'invitado';
         }

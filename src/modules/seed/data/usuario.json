@@ -1,0 +1,82 @@
+[
+  {
+    "id": "1a2b3c4d-0001-0000-0000-000000000001",
+    "nif": "12345678A",
+    "name": "CARLOS_PEREZ",
+    "edad": 18,
+    "email": "carlos.perez@gmail.com",
+    "rol": "administrador"
+  },
+  {
+    "id": "1a2b3c4d-0001-0000-0000-000000000002",
+    "nif": "23456789B",
+    "name": "LUCIA_MARTIN",
+    "edad": 18,
+    "email": "lucia.martin@yahoo.es",
+    "rol": "cliente"
+  },
+  {
+    "id": "1a2b3c4d-0001-0000-0000-000000000003",
+    "nif": "34567890C",
+    "name": "DAVID_SANCHEZ",
+    "edad": 18,
+    "email": "david.sanchez@hotmail.com",
+    "rol": "invitado"
+  },
+  {
+    "id": "1a2b3c4d-0001-0000-0000-000000000004",
+    "nif": "45678901D",
+    "name": "MARIA_RODRIGUEZ",
+    "edad": 18,
+    "email": "maria.rodriguez@gmail.com",
+    "rol": "cliente"
+  },
+  {
+    "id": "1a2b3c4d-0001-0000-0000-000000000005",
+    "nif": "56789012E",
+    "name": "JAVIER_LOPEZ",
+    "edad": 18,
+    "email": "javier.lopez@outlook.es",
+    "rol": "administrador"
+  },
+  {
+    "id": "1a2b3c4d-0001-0000-0000-000000000006",
+    "nif": "67890123F",
+    "name": "SOFIA_TORRES",
+    "edad": 18,
+    "email": "sofia.torres@gmail.com",
+    "rol": "cliente"
+  },
+  {
+    "id": "1a2b3c4d-0001-0000-0000-000000000007",
+    "nif": "78901234G",
+    "name": "MIGUEL_NAVARRO",
+    "edad": 18,
+    "email": "miguel.navarro@hotmail.com",
+    "rol": "invitado"
+  },
+  {
+    "id": "1a2b3c4d-0001-0000-0000-000000000008",
+    "nif": "89012345H",
+    "name": "ISABEL_ORTEGA",
+    "edad": 18,
+    "email": "isabel.ortega@gmail.com",
+    "rol": "cliente"
+  },
+  {
+    "id": "1a2b3c4d-0001-0000-0000-000000000009",
+    "nif": "90123456I",
+    "name": "ANTONIO_ROMERO",
+    "edad": 18,
+    "email": "antonio.romero@gmail.com",
+    "rol": "cliente"
+  },
+  {
+    "id": "1a2b3c4d-0001-0000-0000-000000000010",
+    "nif": "01234567J",
+    "name": "ELENA_CANO",
+    "edad": 18,
+    "email": "elena.cano@hotmail.com",
+    "rol": "administrador"
+  }
+]

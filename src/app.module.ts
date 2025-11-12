@@ -10,6 +10,7 @@ import { SeedModule } from './modules/seed/seed.module';
 @Module({
   imports: [UsuariosModule,
     ClienteModule,
+    SeedModule,
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'postgres',

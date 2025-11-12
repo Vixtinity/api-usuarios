@@ -1,37 +1,52 @@
 import { Injectable } from '@nestjs/common';
-
-import * as seedClientes from './data/clientes.json';
+import seedClientes from './data/clientes.json';
+import seedUsuarios from './data/usuario.json';
 import { ClienteService } from '../clientes/cliente.service';
+import { UsuarioService } from '../usuarios/usuarios.service';
 
 @Injectable()
 export class SeedService {
     
     constructor(
-        private readonly clientesService: ClienteService
+        private readonly clientesService: ClienteService,
+        private readonly usuariosService: UsuarioService,
     ){}
-    
+
     async loadData() {
         console.log('Cargando datos de prueba...');
-        
+
         await this.insertNewClientes();
+        await this.insertNewUsuarios();
 
         return { 
-            message: 'Data loaded successfully',
-            data: seedClientes
+            message: 'Datos cargados',
+            data: {
+                clientes: seedClientes,
+                usuarios: seedUsuarios
+            }
         };
     }
 
     private async insertNewClientes() {
-
-        // declarar tipo → Promise<any>[]
-        const insertPromisesClientes: Promise<any>[] = [];                
+        const insertPromisesClientes: Promise<any>[] = [];
 
         seedClientes.forEach( (cliente: any) => {
             insertPromisesClientes.push( this.clientesService.create(cliente) );
-            console.log(cliente.nombre);
         });
 
         await Promise.all(insertPromisesClientes);
+
+        return true;
+    }
+
+    private async insertNewUsuarios() {
+        const insertPromisesUsuarios: Promise<any>[] = [];
+
+        seedUsuarios.forEach( (usuario: any) => {
+            insertPromisesUsuarios.push( this.usuariosService.create(usuario) );
+        });
+
+        await Promise.all(insertPromisesUsuarios);
 
         return true;
     }

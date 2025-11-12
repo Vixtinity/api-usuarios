@@ -27,7 +27,7 @@ export class Cliente {
     @Column(() => Address, { prefix: '' }) direccion: Address;
     
   
-    //**** MECENISMOS DE SEGURIDAD  *****/
+    //**** MECANISMOS DE SEGURIDAD  *****/
     //monitorizar y auditarlos registros de usuarios y 
     //tabla de accesos --> login/logout/change Profile ...  
    

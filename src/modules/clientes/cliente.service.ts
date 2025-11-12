@@ -24,4 +24,15 @@ export class ClienteService {
   async findAll() {
     return await this.clienteRepo.find();
   }
+
+  async deleteAllclientes() {
+    console.log('borrar clientes')
+    const query = this.clienteRepo.createQueryBuilder('cliente');
+    try {
+      return await query.delete().where({}).execute();
+    } catch (error) {
+      console.log(error);
+    }
+    
+  }
 }
